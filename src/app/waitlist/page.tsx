@@ -465,7 +465,7 @@ const WaitlistPage: React.FC = () => {
                 }`}
                 whileTap={{ scale: 0.95 }}
               >
-                {isSubmitting ? 'Joining...' : 'Join Waitlist'}
+                {isSubmitting ? 'Getting Access...' : 'Get Early Access'}
               </motion.button>
             )}
           </div>

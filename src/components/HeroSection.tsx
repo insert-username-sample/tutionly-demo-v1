@@ -167,7 +167,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     }`}
                   >
                     <span className={`${!isDark ? 'group-hover:text-blue-600' : ''} transition-colors duration-300`}>
-                      Join the Waitlist
+                      Get Early Access
                     </span>
                   </Button>
                 </motion.div>
