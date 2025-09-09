@@ -9,6 +9,7 @@ import { ArrowLeft, Check, ChevronRight, Moon, Sun, Users, BookOpen, MessageSqua
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme, useLogo } from '@/contexts/ThemeContext';
+import { neon } from '@netlify/neon';
 
 interface WaitlistFormData {
   name: string;
@@ -192,33 +193,52 @@ const WaitlistPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: answers.name,
-          email: answers.email,
-          phone: answers.phone || '',
-          role: answers.role,
-          primaryUse: answers.primaryUse,
-          willingnessToPay: answers.willingnessToPay,
-          preferredTutorFormat: answers.preferredTutorFormat,
-          learningStyle: answers.learningStyle,
-          biggestFrustration: answers.biggestFrustration || '',
-          joinWaitlistPerks: answers.joinWaitlistPerks,
-          submittedAt: new Date().toISOString(),
-        }),
-      });
+      // Initialize Neon SQL connection
+      const sql = neon(process.env.NETLIFY_DATABASE_URL!)
 
-      if (response.ok) {
+      const waitlistData = {
+        name: answers.name,
+        email: answers.email,
+        phone: answers.phone || '',
+        role: answers.role,
+        primary_use: answers.primaryUse,
+        willingness_to_pay: answers.willingnessToPay,
+        preferred_tutor_format: answers.preferredTutorFormat,
+        learning_style: answers.learningStyle,
+        biggest_frustration: answers.biggestFrustration || '',
+        join_waitlist_perks: answers.joinWaitlistPerks,
+        submitted_at: new Date().toISOString(),
+      };
+
+      console.log('Submitting to Netlify DB:', waitlistData);
+
+      // Insert data into Neon database using templated SQL for security
+      const result = await sql`
+        INSERT INTO waitlist (
+          name, email, phone, role, primary_use, willingness_to_pay,
+          preferred_tutor_format, learning_style, biggest_frustration,
+          join_waitlist_perks, submitted_at
+        ) VALUES (
+          ${waitlistData.name}, ${waitlistData.email}, ${waitlistData.phone},
+          ${waitlistData.role}, ${waitlistData.primary_use}, ${waitlistData.willingness_to_pay},
+          ${waitlistData.preferred_tutor_format}, ${waitlistData.learning_style},
+          ${waitlistData.biggest_frustration}, ${waitlistData.join_waitlist_perks},
+          ${waitlistData.submitted_at}
+        )
+        RETURNING id
+      `;
+
+      console.log('Successfully inserted into database:', result);
+
+      if (result.length > 0) {
         setIsSubmitted(true);
+        console.log('✅ User successfully added to waitlist!');
       } else {
-        alert('There was an error joining the waitlist. Please try again.');
+        throw new Error('Failed to insert data');
       }
+
     } catch (error) {
-      console.error('Error submitting to waitlist:', error);
+      console.error('❌ Error in waitlist submission:', error);
       alert('There was an error joining the waitlist. Please try again.');
     } finally {
       setIsSubmitting(false);
