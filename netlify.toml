@@ -5,6 +5,7 @@
   NODE_VERSION = "18"
   NPM_VERSION = "9"
   NPM_FLAGS = "--legacy-peer-deps"
+  NETLIFY_USE_V2 = "1"
 
 [functions]
   directory = "netlify/functions"

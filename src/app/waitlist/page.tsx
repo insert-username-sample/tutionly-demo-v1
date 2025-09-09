@@ -193,48 +193,38 @@ const WaitlistPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Initialize Neon SQL connection
-      const sql = neon(process.env.NETLIFY_DATABASE_URL!)
-
       const waitlistData = {
         name: answers.name,
         email: answers.email,
-        phone: answers.phone || '',
+        phone: answers.phone || null,
         role: answers.role,
-        primary_use: answers.primaryUse,
-        willingness_to_pay: answers.willingnessToPay,
-        preferred_tutor_format: answers.preferredTutorFormat,
-        learning_style: answers.learningStyle,
-        biggest_frustration: answers.biggestFrustration || '',
-        join_waitlist_perks: answers.joinWaitlistPerks,
-        submitted_at: new Date().toISOString(),
+        primaryUse: answers.primaryUse,
+        willingnessToPay: answers.willingnessToPay,
+        preferredTutorFormat: answers.preferredTutorFormat,
+        learningStyle: answers.learningStyle,
+        biggestFrustration: answers.biggestFrustration || null,
+        joinWaitlistPerks: answers.joinWaitlistPerks,
       };
 
-      console.log('Submitting to Netlify DB:', waitlistData);
+      console.log('Submitting to waitlist:', waitlistData);
 
-      // Insert data into Neon database using templated SQL for security
-      const result = await sql`
-        INSERT INTO waitlist (
-          name, email, phone, role, primary_use, willingness_to_pay,
-          preferred_tutor_format, learning_style, biggest_frustration,
-          join_waitlist_perks, submitted_at
-        ) VALUES (
-          ${waitlistData.name}, ${waitlistData.email}, ${waitlistData.phone},
-          ${waitlistData.role}, ${waitlistData.primary_use}, ${waitlistData.willingness_to_pay},
-          ${waitlistData.preferred_tutor_format}, ${waitlistData.learning_style},
-          ${waitlistData.biggest_frustration}, ${waitlistData.join_waitlist_perks},
-          ${waitlistData.submitted_at}
-        )
-        RETURNING id
-      `;
+      // Call Netlify serverless function
+      const response = await fetch('/.netlify/functions/waitlist-submission', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(waitlistData),
+      });
 
-      console.log('Successfully inserted into database:', result);
+      const result = await response.json();
 
-      if (result.length > 0) {
+      if (response.ok && result.success) {
         setIsSubmitted(true);
         console.log('✅ User successfully added to waitlist!');
+        console.log('Response:', result);
       } else {
-        throw new Error('Failed to insert data');
+        throw new Error(result.error || 'Failed to submit form');
       }
 
     } catch (error) {
