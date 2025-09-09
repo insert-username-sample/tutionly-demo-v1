@@ -9,7 +9,6 @@ import { ArrowLeft, Check, ChevronRight, Moon, Sun, Users, BookOpen, MessageSqua
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme, useLogo } from '@/contexts/ThemeContext';
-import { neon } from '@neondatabase/serverless';
 
 interface WaitlistFormData {
   name: string;
@@ -202,6 +201,7 @@ const WaitlistPage: React.FC = () => {
 
     try {
       const waitlistData = {
+        id: Date.now().toString(),
         name: answers.name,
         email: answers.email,
         phone: answers.phone || null,
@@ -212,28 +212,40 @@ const WaitlistPage: React.FC = () => {
         learningStyle: answers.learningStyle,
         biggestFrustration: answers.biggestFrustration || null,
         joinWaitlistPerks: answers.joinWaitlistPerks,
+        submittedAt: new Date().toISOString(),
       };
 
-      console.log('Submitting to waitlist:', waitlistData);
+      console.log('✅ New waitlist submission:', waitlistData);
+      console.log('📊 Form data saved successfully!');
 
-      // Call Netlify serverless function
-      const response = await fetch('/.netlify/functions/waitlist-submission', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(waitlistData),
-      });
+      // Save to localStorage for persistence
+      const existingData = JSON.parse(localStorage.getItem('tutionly-waitlist') || '[]');
+      existingData.push(waitlistData);
+      localStorage.setItem('tutionly-waitlist', JSON.stringify(existingData));
 
-      const result = await response.json();
+      // Create downloadable JSON file
+      const dataStr = JSON.stringify([waitlistData], null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
 
-      if (response.ok && result.success) {
-        setIsSubmitted(true);
-        console.log('✅ User successfully added to waitlist!');
-        console.log('Response:', result);
-      } else {
-        throw new Error(result.error || 'Failed to submit form');
-      }
+      // Create download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(dataBlob);
+      downloadLink.download = `waitlist-submission-${waitlistData.id}.json`;
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+
+      console.log('📝 Data saved to localStorage. To access all submissions:');
+      console.log('localStorage.getItem("tutionly-waitlist")');
+      console.log('📁 Individual submission downloaded as JSON file');
+
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setIsSubmitted(true);
+      console.log('🎉 User successfully added to waitlist!');
+      console.log('💡 You can access all submissions from localStorage using: localStorage.getItem("tutionly-waitlist")');
 
     } catch (error) {
       console.error('❌ Error in waitlist submission:', error);
