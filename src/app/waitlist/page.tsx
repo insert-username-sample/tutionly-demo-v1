@@ -9,7 +9,7 @@ import { ArrowLeft, Check, ChevronRight, Moon, Sun, Users, BookOpen, MessageSqua
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme, useLogo } from '@/contexts/ThemeContext';
-import { neon } from '@netlify/neon';
+import { neon } from '@neondatabase/serverless';
 
 interface WaitlistFormData {
   name: string;
