@@ -397,23 +397,23 @@ const WaitlistPage: React.FC = () => {
                 </motion.div>
               ) : (
                 <motion.div
-                  key={`textarea-${currentQuestion}`}
+                  key={`input-${currentQuestion}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   className="max-w-2xl mx-auto"
                 >
-                  <textarea
+                  <input
+                    type={currentQ.id === 'email' ? 'email' : 'text'}
                     value={(answers[currentQ.id as keyof WaitlistFormData] as string) || ''}
                     onChange={(e) => handleTextChange(e.target.value)}
                     onKeyPress={handleTextKeyPress}
                     placeholder={currentQ.placeholder}
-                    className={`w-full p-6 rounded-xl resize-none ${
+                    className={`w-full p-6 rounded-xl text-left ${
                       isDark
                         ? 'bg-gray-800 text-white placeholder-gray-400 border-gray-700'
                         : 'bg-white text-gray-900 placeholder-gray-500 border-gray-300 shadow-sm'
                     } border focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
-                    rows={4}
                   />
                   {!currentQ.required && (
                     <p className={`text-sm mt-2 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
