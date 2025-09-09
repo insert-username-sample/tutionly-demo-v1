@@ -35,6 +35,14 @@ const questions = [
     icon: Users,
   },
   {
+    id: 'email',
+    title: "What's your email address?",
+    type: 'short_answer' as const,
+    placeholder: 'Enter your email address',
+    required: true,
+    icon: Users,
+  },
+  {
     id: 'phone',
     title: "What's your phone number? (Optional)",
     type: 'short_answer' as const,
