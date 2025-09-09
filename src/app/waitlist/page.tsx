@@ -223,22 +223,10 @@ const WaitlistPage: React.FC = () => {
       existingData.push(waitlistData);
       localStorage.setItem('tutionly-waitlist', JSON.stringify(existingData));
 
-      // Create downloadable JSON file
-      const dataStr = JSON.stringify([waitlistData], null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
-
-      // Create download link
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(dataBlob);
-      downloadLink.download = `waitlist-submission-${waitlistData.id}.json`;
-      downloadLink.style.display = 'none';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-
-      console.log('📝 Data saved to localStorage. To access all submissions:');
+      // Developer access instructions
+      console.log('🎯 Data saved successfully!');
+      console.log('📝 To access all submissions:');
       console.log('localStorage.getItem("tutionly-waitlist")');
-      console.log('📁 Individual submission downloaded as JSON file');
 
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
