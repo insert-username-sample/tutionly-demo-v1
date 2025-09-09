@@ -1,12 +1,15 @@
+[[redirects]]
+  force = true
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 [build]
   publish = "out"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
-  NPM_FLAGS = "--legacy-peer-deps"
-  NETLIFY_USE_V2 = "1"
 
 [functions]
   directory = "netlify/functions"
-  node_bundler = "esbuild"
