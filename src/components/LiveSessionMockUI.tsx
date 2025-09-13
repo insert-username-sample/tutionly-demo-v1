@@ -154,7 +154,7 @@ const LiveSessionMockUI = () => {
   };
 
   return (
-    <div className={`flex flex-col lg:flex-row w-full max-w-none lg:max-w-7xl gap-2 lg:gap-4 p-3 lg:p-4 rounded-2xl ${isDark ? 'bg-gray-900/50' : 'bg-white/25'} backdrop-blur-xl shadow-2xl border ${isDark ? 'border-gray-700/30' : 'border-white/20'} m-0 mb-4 lg:ml-4 lg:mb-12`}>
+    <div className={`flex flex-col lg:flex-row w-full max-w-7xl gap-4 p-4 rounded-2xl ${isDark ? 'bg-gray-900/50' : 'bg-white/25'} backdrop-blur-xl shadow-2xl border ${isDark ? 'border-gray-700/30' : 'border-white/20'} ml-4 mb-12`}>
       {/* Left Side: Live Session */}
       <div className="flex-1 lg:basis-[65%] flex flex-col rounded-xl overflow-hidden flex-grow">
         <div className="relative flex-grow min-h-0 overflow-hidden">

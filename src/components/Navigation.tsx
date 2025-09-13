@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
     },
     scrolled: {
       backgroundColor: isDark ? 'rgba(17, 24, 39, 0.4)' : 'rgba(255, 255, 255, 0.4)',
-      width: 'calc(min(100vw - 2rem, 1400px))',
+      width: 'calc(100vw - 2rem)',
       maxWidth: '1400px',
       top: '16px',
       borderRadius: '9999px',
@@ -141,7 +141,7 @@ const Navigation: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -155,7 +155,7 @@ const Navigation: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl"
+          className="md:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl"
           style={{
             backgroundColor: isDark ? 'rgba(17, 24, 39, 0.9)' : 'rgba(255, 255, 255, 0.9)',
             backdropFilter: 'blur(10px)',
