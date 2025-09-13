@@ -41,11 +41,11 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
   ];
 
   return (
-    <footer className={`py-16 transition-all duration-300 ${className}`} style={{ 
-      backgroundColor: isDark ? 'var(--dark-bg)' : 'var(--light-card)' 
+    <footer className={`py-16 section-padding section-mobile footer-mobile transition-all duration-300 ${className}`} style={{
+      backgroundColor: isDark ? 'var(--dark-bg)' : 'var(--light-card)'
     }}>
-      <div className="max-w-7xl mx-auto px-6 xl:px-0">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-0">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12 grid-mobile-1">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <motion.div

@@ -1033,7 +1033,7 @@ const DemoPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 xl:px-0 pb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-0 pb-12 section-padding">
         {/* Demo Navigation Tabs */}
         <div className="flex justify-center mb-8">
           <div className={`flex p-2 rounded-2xl ${isDark ? 'bg-gray-800' : 'bg-white shadow-lg'}`}>

@@ -3,6 +3,7 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
+import BenefitsSection from '@/components/BenefitsSection';
 import HowItWorks from '@/components/HowItWorks';
 import Features from '@/components/Features';
 import Footer from '@/components/Footer';
@@ -31,10 +32,11 @@ export default function HomePage() {
       }}
     >
       <Navigation />
-      <HeroSection 
+      <HeroSection
         onTryDemo={handleTryDemo}
         onJoinWaitlist={handleJoinWaitlist}
       />
+      <BenefitsSection />
       <BackgroundWrapper>
         <HowItWorks />
         <Divider />

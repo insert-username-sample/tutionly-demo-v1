@@ -89,8 +89,8 @@ const HelpPage: React.FC = () => {
                     isDark ? 'text-gray-300' : 'text-gray-700'
                   }`}
                 >
-                  Tutorly is an AI-powered tutoring platform for K-12 students. It
-                  personalizes learning by adapting to each student’s pace,
+                  Tuitionly is an AI-powered tutoring platform for K-12 students. It
+                  personalizes learning by adapting to each student's pace,
                   subject, and style.
                 </p>
               </div>

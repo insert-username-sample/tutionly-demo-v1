@@ -25,7 +25,7 @@ const Navigation: React.FC = () => {
   const navItems = [
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Contact', href: 'mailto:manaskecreations@gmail.com' },
   ];
 
   useEffect(() => {
@@ -143,8 +143,16 @@ const Navigation: React.FC = () => {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
           <ThemeToggle />
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+            className="w-11 h-11 flex items-center justify-center rounded-lg touch-manipulation"
+            style={{
+              backgroundColor: isDark ? 'rgba(31, 41, 55, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+              backdropFilter: 'blur(8px)',
+            }}
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -155,13 +163,13 @@ const Navigation: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl"
+          className="md:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl nav-mobile-menu"
           style={{
             backgroundColor: isDark ? 'rgba(17, 24, 39, 0.9)' : 'rgba(255, 255, 255, 0.9)',
             backdropFilter: 'blur(10px)',
           }}
         >
-          <div className="flex flex-col items-center gap-6 px-6">
+          <div className="flex flex-col items-center gap-6 px-6 touch-spacing-mobile">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -182,7 +190,7 @@ const Navigation: React.FC = () => {
                   handleSignOut();
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full text-center py-2 text-lg font-medium"
+                className="w-full text-center py-2 text-lg font-medium touch-target"
                 style={{
                   color: isDark ? 'var(--dark-text-primary)' : 'var(--light-text-primary)',
                 }}
@@ -190,7 +198,7 @@ const Navigation: React.FC = () => {
                 Sign Out
               </button>
             ) : (
-              <div className="flex flex-col items-center gap-4 w-full">
+              <div className="flex flex-col items-center gap-4 w-full touch-spacing-mobile">
                 <Link href="/sign-in" className="w-full">
                   <Button variant="primary" size="md" className="w-full">
                     Sign In

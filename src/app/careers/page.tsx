@@ -90,52 +90,7 @@ const CareersPage: React.FC = () => {
             </p>
           </GlassCard>
 
-          <GlassCard className="p-8">
-            <h2 className="text-2xl font-bold mb-4 text-gradient">
-              Meet the Team
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <Image
-                  src="/path/to/team-member-1.jpg"
-                  alt="Team Member 1"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold">John Doe</h3>
-                <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  CEO & Co-Founder
-                </p>
-              </div>
-              <div className="text-center">
-                <Image
-                  src="/path/to/team-member-2.jpg"
-                  alt="Team Member 2"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold">Jane Smith</h3>
-                <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  CTO & Co-Founder
-                </p>
-              </div>
-              <div className="text-center">
-                <Image
-                  src="/path/to/team-member-3.jpg"
-                  alt="Team Member 3"
-                  width={150}
-                  height={150}
-                  className="rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-bold">Peter Jones</h3>
-                <p className={`${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Lead Developer
-                </p>
-              </div>
-            </div>
-          </GlassCard>
+
         </motion.div>
       </div>
     </main>

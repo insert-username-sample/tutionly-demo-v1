@@ -19,7 +19,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   const { isDark } = useTheme();
 
   return (
-    <section className="relative flex items-center overflow-hidden py-32 lg:py-40">
+    <section className="relative flex items-center overflow-hidden py-32 lg:py-40 hero-section">
       {/* Background Container */}
       <div className="absolute inset-0 z-0">
         {!isDark ? (
@@ -100,7 +100,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <FloatingElement size="md" position="top-right" delay={1} opacity={isDark ? 0.08 : 0.15} color={isDark ? 'white' : 'purple'} />
       <FloatingElement size="xl" position="bottom-left" delay={2} opacity={isDark ? 0.06 : 0.1} color={isDark ? 'white' : 'green'} />
       <FloatingElement size="sm" position="bottom-right" delay={0.5} opacity={isDark ? 0.12 : 0.25} color={isDark ? 'white' : 'pink'} />
-      
+
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 items-center lg:items-center">
           {/* Left Content */}
@@ -110,31 +110,30 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold leading-tight mb-6 hero-title" style={{
                 color: isDark ? 'var(--dark-text-primary)' : 'var(--light-text-primary)'
               }}>
-                Because Every Student<br /><span className="text-gradient">Learns Differently.</span>
+                <span className="text-gradient">Affordable Private Tutoring</span> now made possible using <span className="text-gradient">AI</span>
               </h1>
-              
-              <p className="text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mb-8 font-body" style={{
+
+              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl mb-8 font-body hero-subtitle" style={{
                 color: isDark ? 'var(--dark-text-secondary)' : 'var(--light-text-secondary)'
               }}>
-                Tuitionly adapts to your unique learning style - memory type, pace, and preferences - 
-                so you can study smarter, not harder.
+                Because Every Student Learns Differently
               </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start touch-spacing hero-buttons">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group"
+                  className="group w-full sm:w-auto"
                 >
                   <Button
                     variant="primary"
                     size="md"
                     onClick={onTryDemo}
                     icon={<Play size={20} />}
-                    className={`shadow-xl transition-all duration-300 ${
+                    className={`shadow-xl transition-all duration-300 w-full sm:w-auto ${
                       isDark
                         ? 'hover:shadow-2xl'
                         : 'hover:shadow-blue-200/50 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600'
@@ -149,13 +148,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group"
+                  className="group w-full sm:w-auto"
                 >
                   <Button
                     variant="secondary"
                     size="md"
                     onClick={onJoinWaitlist}
-                    className={`transition-all duration-300 ${
+                    className={`transition-all duration-300 w-full sm:w-auto ${
                       isDark
                         ? 'hover:bg-gray-700 hover:shadow-xl'
                         : 'hover:bg-white hover:shadow-lg hover:border-blue-200 group-hover:text-blue-600'
@@ -178,7 +177,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full max-w-full h-auto lg:h-[650px] lg:w-[120%]"
+              className="w-full max-w-full h-auto lg:h-[650px] lg:w-[120%] live-session-mobile"
             >
               <LiveSessionMockUI />
             </motion.div>
