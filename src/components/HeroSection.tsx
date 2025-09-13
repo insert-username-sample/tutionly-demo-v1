@@ -102,31 +102,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       <FloatingElement size="sm" position="bottom-right" delay={0.5} opacity={isDark ? 0.12 : 0.25} color={isDark ? 'white' : 'pink'} />
       
       <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 items-center lg:items-center">
           {/* Left Content */}
-          <div className="lg:col-span-5 text-left">
+          <div className="lg:col-span-5 text-left lg:text-left text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-5xl font-bold leading-tight mb-6" style={{
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6" style={{
                 color: isDark ? 'var(--dark-text-primary)' : 'var(--light-text-primary)'
               }}>
-                Because Every Student{' '}
-                <span className="text-gradient">
-                  Learns Differently.
-                </span>
+                Because Every Student<br className="hidden sm:block" /><span className="text-gradient">Learns Differently.</span>
               </h1>
-              
-              <p className="text-lg lg:text-xl leading-relaxed max-w-xl mb-8 font-body" style={{
+
+              <p className="text-base sm:text-lg md:text-xl lg:text-xl leading-relaxed max-w-xl mb-8 font-body text-center lg:text-left" style={{
                 color: isDark ? 'var(--dark-text-secondary)' : 'var(--light-text-secondary)'
               }}>
                 Tuitionly adapts to your unique learning style - memory type, pace, and preferences - 
                 so you can study smarter, not harder.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-start">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -176,12 +173,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           {/* Right Content - Combined Mock UI */}
-          <div className="lg:col-span-7 justify-self-end">
+          <div className="lg:col-span-7 w-full lg:order-first order-last">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-[120%] h-[650px]"
+              className="w-full max-w-full h-auto lg:h-[650px] lg:scale-110 lg:-ml-8"
             >
               <LiveSessionMockUI />
             </motion.div>

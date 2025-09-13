@@ -43,7 +43,7 @@ const Navigation: React.FC = () => {
   const navVariants = {
     top: {
       backgroundColor: 'rgba(0,0,0,0)',
-      width: '90vw',
+      width: 'calc(100vw - 2rem)',
       maxWidth: '1400px',
       top: 0,
       borderRadius: 0,
@@ -54,7 +54,7 @@ const Navigation: React.FC = () => {
     },
     scrolled: {
       backgroundColor: isDark ? 'rgba(17, 24, 39, 0.4)' : 'rgba(255, 255, 255, 0.4)',
-      width: '90vw',
+      width: 'calc(min(100vw - 2rem, 1400px))',
       maxWidth: '1400px',
       top: '16px',
       borderRadius: '9999px',
@@ -73,20 +73,21 @@ const Navigation: React.FC = () => {
       transition={{ duration: 0.5, ease: 'easeInOut' }}
       className={`fixed left-1/2 transform -translate-x-1/2 z-50 ${isScrolled ? 'backdrop-blur-2xl' : ''}`}
     >
-      <div className="w-full mx-auto flex items-center justify-between px-6 md:px-12 py-3">
+      <div className="w-full mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-12 py-3">
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0">
+        <Link href="/" className="flex-shrink-0 ml-2 sm:ml-4 lg:ml-0">
           <Image
             src={logoSrc}
             alt={logoAlt}
-            width={240}
-            height={60}
+            width={180}
+            height={45}
+            className="sm:w-[200px] sm:h-[50px] lg:w-[240px] lg:h-[60px]"
             priority
           />
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8 xl:gap-12">
           {/* Navigation Items */}
           <div className="flex items-center gap-8">
             {navItems.map((item) => (
@@ -140,7 +141,7 @@ const Navigation: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="lg:hidden flex items-center gap-4">
           <ThemeToggle />
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -154,7 +155,7 @@ const Navigation: React.FC = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl"
+          className="lg:hidden absolute top-full left-0 w-full shadow-lg py-4 rounded-b-2xl"
           style={{
             backgroundColor: isDark ? 'rgba(17, 24, 39, 0.9)' : 'rgba(255, 255, 255, 0.9)',
             backdropFilter: 'blur(10px)',

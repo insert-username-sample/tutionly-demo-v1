@@ -100,11 +100,11 @@ const SessionContent = () => {
         return <Whiteboard subject={name as 'Math' | 'Science' | 'History'} />;
       case 'text':
         return (
-          <div className="text-white p-4 w-full h-full flex flex-col justify-center">
-            <h3 className="text-2xl font-bold mb-4">{content.title}</h3>
-            <ul className="list-disc list-inside text-lg">
+          <div className="text-white p-2 sm:p-4 w-full h-full flex flex-col justify-center">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{content.title}</h3>
+            <ul className="list-disc list-inside text-sm sm:text-base md:text-lg">
               {content.points.map((point, index) => (
-                <li key={index} className="mb-2">{point}</li>
+                <li key={index} className="mb-1.5 sm:mb-2 leading-relaxed">{point}</li>
               ))}
             </ul>
           </div>

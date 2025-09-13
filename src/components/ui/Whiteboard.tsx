@@ -13,7 +13,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ subject, isAttachment }) => {
       case 'Math':
         return (
           <div className="flex items-center justify-center w-full h-full">
-            <div className="text-3xl text-gray-800 font-serif">
+            <div className="text-xl sm:text-2xl md:text-3xl text-gray-800 font-serif">
               x =&nbsp;
               <div className="inline-block relative align-middle">
                 <div className="text-center">
